@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AADHAV PUBLIC SCHOOL - Admission Enquiry 2026-27</title>
+<style>
+body{font-family:Arial;background:linear-gradient(to right,#1e90ff,#00c6ff);margin:0;}
+.container{width:60%;margin:auto;background:white;padding:25px;border-radius:10px;margin-top:20px;box-shadow:0px 0px 10px gray;}
+h2{text-align:center;color:#002147;}
+label{font-weight:bold;}
+input,select,textarea{width:100%;padding:8px;margin-top:5px;margin-bottom:15px;border:1px solid #ccc;border-radius:5px;}
+button{background:#ff6600;color:white;border:none;padding:12px;width:100%;font-size:16px;border-radius:5px;cursor:pointer;}
+button:hover{background:#e65c00;}
+.footer{text-align:center;color:white;margin-top:20px;padding:10px;}
+</style>
+</head>
+<body>
+<div class="container">
+<h1 style="text-align:center;">
+<span style="color:red;">AADHAV</span> <span style="color:green;">PUBLIC SCHOOL</span><br>
+<span style="color:pink;">Senior Secondary (CBSE)</span><br>PERAMBALUR - 621212
+</h1>
+<h2>Admission Enquiry Form – Academic Year 2026-27</h2>
+
+<form id="admissionForm">
+<label>Student Name</label>
+<input type="text" name="studentName" required>
+
+<label>Date of Birth</label>
+<input type="date" name="dob" required>
+
+<label>Gender</label>
+<select name="gender" required>
+<option value="">Select Gender</option>
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+</select>
+
+<label>Applying for Grade</label>
+<select name="grade" required>
+<option value="">Select Grade</option>
+<option>L1</option><option>L2</option><option>L3</option>
+<option>Grade 1</option><option>Grade 2</option><option>Grade 3</option>
+<option>Grade 4</option><option>Grade 5</option><option>Grade 6</option>
+<option>Grade 7</option><option>Grade 8</option><option>Grade 9</option>
+<option>Grade 10</option><option>Grade 11</option><option>Grade 12</option>
+</select>
+
+<label>Previous School Name</label>
+<input type="text" name="previousSchool" required>
+
+<label>Previous Class</label>
+<input type="text" name="previousClass" required>
+
+<label>Parent Name</label>
+<input type="text" name="parentName" required>
+
+<label>Mobile Number</label>
+<input type="tel" name="mobile" required>
+
+<label>Email (Optional)</label>
+<input type="email" name="email">
+
+<label>Address</label>
+<textarea name="address" required></textarea>
+
+<button type="submit">Submit Admission Enquiry</button>
+<p id="responseMsg" style="text-align:center;color:green;"></p>
+</form>
+</div>
+
+<div class="footer">
+<p>© Aadhav Public School | Perambalur | www.aadhav.education</p>
+</div>
+
+<script>
+const form = document.getElementById('admissionForm');
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const data = new FormData(form);
+  const searchParams = new URLSearchParams();
+  for (const pair of data) { searchParams.append(pair[0], pair[1]); }
+  
+  fetch('https://script.google.com/macros/s/AKfycbxPF0jM5MgBqX1EVp3DjPCJblBXSLftsgqsmpGGDwtvATkKk5Eddp0dbgRAxIrtit9Arg/exec', { method:'POST', body:searchParams })
+    .then(response => response.text())
+    .then(response => {
+      document.getElementById('responseMsg').innerText = "Form Submitted Successfully!";
+      form.reset();
+    })
+    .catch(error => {
+      document.getElementById('responseMsg').innerText = "Error! Please try again.";
+    });
+});
+</script>
+</body>
+</html>
